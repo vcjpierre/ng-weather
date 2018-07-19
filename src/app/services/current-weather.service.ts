@@ -1,11 +1,12 @@
-import { Weather } from './../../structures/weather.structure';
-import { Coords } from './../../structures/coords.structure';
+import { GeolocationService } from './geolocation.service';
+import { Weather } from '../../structures/weather.structure';
+import { Coords } from '../../structures/coords.structure';
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CurrentWeatherService {
 
   endpoint: string = 'https://api.openweathermap.org/data/2.5/weather';
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private geolocationService: GeolocationService) { 
     this.weather$ =  this.weatherSubject.asObservable().pipe(
       map((data : any)=> {
         let mainWather = data.weather[0];
@@ -32,9 +33,8 @@ export class CurrentWeatherService {
       })
     );
 
-    this.get({
-      lat: -17.742171,
-      lon: -63.164171
+    this.geolocationService.coords$.subscribe((coords)=>{
+      this.get(coords);
     });
   }
 
@@ -42,9 +42,9 @@ export class CurrentWeatherService {
     let args : string = `?lat=${coords.lat}&lon=${coords.lon}&APPID=${environment.key}&units=metric`;
     let url = this.endpoint + args;
 
-    if(isDevMode()) {
-      url = 'assets/weather.json';
-    }
+    // if(isDevMode()) {
+    //   url = 'assets/weather.json';
+    // }
 
      this.http.get(url).subscribe(this.weatherSubject);
   }
