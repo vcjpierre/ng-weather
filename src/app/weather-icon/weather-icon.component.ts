@@ -35,6 +35,7 @@ export class WeatherIconComponent implements OnInit {
     if (this._code == 801) this.icon = "cloudy-day-1";
     if (this._code == 802) this.icon = "cloudy-day-2";
     if (this._code == 803) this.icon = "cloudy-day-3";
+    if (this._code == 804) this.icon = "cloudy";
   }
 
   constructor() { }
