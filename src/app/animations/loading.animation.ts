@@ -1,6 +1,6 @@
 import { trigger, style, animate, query, stagger, transition } from '@angular/animations';
 
-export const loadingAnimations = function() {
+export function loadingAnimations() {
     return trigger('loading', [
         transition('* => *', [
             query(':leave',[
