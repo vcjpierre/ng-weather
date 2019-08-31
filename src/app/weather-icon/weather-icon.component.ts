@@ -15,7 +15,7 @@ export class WeatherIconComponent implements OnInit {
     this.icon = null;
 
     if (this._code >= 200 && this._code <=250) {
-      this.icon = "thunder";
+      this.icon = "day";
     }
 
     if (this._code >= 300 && this._code <=350) {
