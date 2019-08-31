@@ -1,5 +1,9 @@
 # Angular Weather App
 
+<p align="center">
+    <img src="docs/screencapture.png" height="600em"/>
+</p>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ## Development server
