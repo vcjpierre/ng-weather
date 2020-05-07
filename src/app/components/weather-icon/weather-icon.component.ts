@@ -10,19 +10,19 @@ export class WeatherIconComponent implements OnInit {
   icon: string = "weather";
   _code: number;
 
-  @Input() set code(value : number){
+  @Input() set code(value: number) {
     this._code = value;
     this.icon = null;
 
-    if (this._code >= 200 && this._code <=250) {
+    if (this._code >= 200 && this._code <= 250) {
       this.icon = "day";
     }
 
-    if (this._code >= 300 && this._code <=350) {
+    if (this._code >= 300 && this._code <= 350) {
       this.icon = "rainy-4";
     }
 
-    if (this._code >= 500 && this._code <=550) {
+    if (this._code >= 500 && this._code <= 550) {
       this.icon = "rainy-7";
     }
 
@@ -40,7 +40,7 @@ export class WeatherIconComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

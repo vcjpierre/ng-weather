@@ -1,6 +1,6 @@
-import { showUpStaggered } from '../animations/showUp.animation';
-import { ForecastService } from '../services/forecast.service';
 import { Component, OnInit } from '@angular/core';
+import { showUpStaggered } from '../../shared/animations/showUp.animation';
+import { ForecastService } from 'src/app/shared/services/forecast.service';
 
 @Component({
   selector: 'app-forecast',
@@ -12,7 +12,7 @@ export class ForecastComponent implements OnInit {
 
   constructor(public forecastService: ForecastService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

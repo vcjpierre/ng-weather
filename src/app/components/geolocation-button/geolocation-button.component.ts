@@ -1,5 +1,5 @@
-import { GeolocationService } from './../services/geolocation.service';
 import { Component, OnInit } from '@angular/core';
+import { GeolocationService } from 'src/app/shared/services/geolocation.service';
 
 @Component({
   selector: 'app-geolocation-button',
@@ -8,18 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeolocationButtonComponent implements OnInit {
 
-  active : boolean = false;
+  active: boolean = false;
 
   constructor(public geolocationService: GeolocationService) { }
 
   ngOnInit() {
-    this.geolocationService.permission$.then((status) => { 
+    this.geolocationService.permission$.then((status) => {
       // alert(status)
       this.active = (status == 'granted')
 
-    if(this.active)
-    this.geolocationService.requestGeolocation();
+      if (this.active)
+        this.geolocationService.requestGeolocation();
     });
   }
-
 }

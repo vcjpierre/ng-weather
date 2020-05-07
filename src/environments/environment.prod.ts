@@ -1,4 +1,6 @@
+require('dotenv').load();
+
 export const environment = {
-  production: false,
-  key: '9cafcc3cc7ba171585fc1375f67c3eeb'
+  production: true,
+  key: '${process.env.OPEN_WEATHER_API_KEY}'
 };

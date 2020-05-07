@@ -1,6 +1,6 @@
-import { loadingAnimations } from '../animations/loading.animation';
 import { Component, OnInit } from '@angular/core';
-import { CurrentWeatherService } from '../services/current-weather.service';
+import { CurrentWeatherService } from 'src/app/shared/services/current-weather.service';
+import { loadingAnimations } from '../../shared/animations/loading.animation';
 
 @Component({
   selector: 'app-loading',
@@ -10,8 +10,8 @@ import { CurrentWeatherService } from '../services/current-weather.service';
 })
 export class LoadingComponent implements OnInit {
 
-  _elements : string[] = ['#ffe5ec', '#ff80a0', '#ff2e63', '#800020','#1a0006'];
-  public elements : string[];
+  _elements: string[] = ['#ffe5ec', '#ff80a0', '#ff2e63', '#800020', '#1a0006'];
+  public elements: string[];
 
   constructor(public currentWeatherService: CurrentWeatherService) { }
 
@@ -19,21 +19,21 @@ export class LoadingComponent implements OnInit {
     this.set();
   }
 
-  set(){
+  set() {
     this.elements = this._elements;
     this.scheduleNextIteration();
   }
 
-  scheduleNextIteration(){
-    setTimeout(()=>{
-      if(this.elements.length == 0) return this.set();
+  scheduleNextIteration() {
+    setTimeout(() => {
+      if (this.elements.length == 0) return this.set();
 
       this.clear();
 
-    },100 * this._elements.length + 300)
+    }, 100 * this._elements.length + 300)
   }
 
-  clear(){
+  clear() {
     this.elements = [];
     this.scheduleNextIteration();
   }

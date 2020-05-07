@@ -1,0 +1,65 @@
+$dark: #252a32
+$accent: #ff2e63
+$light: #eaeaea
+$main: #08d9d6
+
+\:host
+  display: inline-block
+
+*, *:before, *:after
+  box-sizing: border-box
+  
+.weather-wrapper
+  margin-top: 20px
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: center
+
+.card
+  margin: 20px 5px
+  border-radius: 20px
+  position: relative
+  overflow: hidden
+  width: 270px
+  height: 270px
+  background-color: white
+  box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1)
+  grid-template-columns: repeat(4, 1fr)
+  grid-template-rows: repeat(3, auto)
+  grid-template-areas:"icon icon temperature temperature" "lowtemp lowtemp hightemp hightemp" "description description description description"
+
+.card, .temp
+  grid-area: temperature
+  .big
+    font-size: 2em
+    color: $main
+    font-weight: bold
+  p
+    margin: 0
+
+.card, .icon
+  grid-area: icon
+
+.card, .description
+  grid-area: description
+  h2
+    color: $accent
+    text-transform: uppercase
+    letter-spacing: 0.3em
+
+.low-temp 
+  grid-area: lowtemp
+
+
+.high-temp 
+  grid-area: hightemp
+
+.low-temp, .high-temp 
+  color: $accent
+  span 
+    color: $dark
+    opacity: 0.56
+    font-size: 0.6em
+    
+

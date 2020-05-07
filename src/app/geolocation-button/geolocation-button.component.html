@@ -1,6 +1,0 @@
-<div class="centered">
-    <div *ngIf="!(geolocationService.coords$ | async)">
-      <button (click)="geolocationService.requestGeolocation()">Activar mi ubicación</button>
-      <p>Activa tu ubicación para recibir los datos del clima para tu ciudad.</p>
-    </div>
-</div>

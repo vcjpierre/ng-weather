@@ -1,7 +1,7 @@
 <div class="weather-wrapper">
   <div class="card" *ngIf="weather">
     <div class="icon">
-      <app-weather-icon [code]="weather.cod"></app-weather-icon>
+      <app-weather-icon [code]="weather.id"></app-weather-icon>
     </div>
     <div class="temp" *ngIf="weather.temp">
       <p>Today</p>
