@@ -1,13 +1,6 @@
 # Angular Weather
 
-> Weather app with [OpenWeatherMap API](https://openweathermap.org/api)
-
-<p align="center">
-    <img src="docs/screencapture_1.png" height="600em"/>
-    <img src="docs/screencapture_2.png" height="600em"/>
-</p>
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) and uses the [OpenWeatherMap API](https://home.openweathermap.org/api_keys)
 
 ## Development server
 
