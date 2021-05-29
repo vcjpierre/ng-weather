@@ -1,6 +1,9 @@
 {
   "name": "ng-weather",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=12.14 <15"
+  }
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
