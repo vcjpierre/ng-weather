@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -12,22 +12,15 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 import { WeatherIconComponent } from './components/weather-icon/weather-icon.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    CurrentWeatherComponent,
-    ForecastComponent,
-    GeolocationButtonComponent,
-    LoadingComponent,
-    WeatherCardComponent,
-    WeatherIconComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        CurrentWeatherComponent,
+        ForecastComponent,
+        GeolocationButtonComponent,
+        LoadingComponent,
+        WeatherCardComponent,
+        WeatherIconComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
