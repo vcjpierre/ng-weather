@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { GeolocationService } from 'src/app/shared/services/geolocation.service';
 
 @Component({
-  selector: 'app-geolocation-button',
-  templateUrl: './geolocation-button.component.html',
-  styleUrls: ['./geolocation-button.component.sass']
+    selector: 'app-geolocation-button',
+    templateUrl: './geolocation-button.component.html',
+    styleUrls: ['./geolocation-button.component.sass'],
+    standalone: false
 })
 export class GeolocationButtonComponent implements OnInit {
 

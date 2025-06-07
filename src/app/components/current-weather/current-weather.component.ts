@@ -3,10 +3,11 @@ import { CurrentWeatherService } from 'src/app/shared/services/current-weather.s
 import { showUp } from '../../shared/animations/showUp.animation';
 
 @Component({
-  selector: 'app-current-weather',
-  templateUrl: './current-weather.component.html',
-  styleUrls: ['./current-weather.component.sass'],
-  animations: [showUp]
+    selector: 'app-current-weather',
+    templateUrl: './current-weather.component.html',
+    styleUrls: ['./current-weather.component.sass'],
+    animations: [showUp],
+    standalone: false
 })
 export class CurrentWeatherComponent implements OnInit {
 

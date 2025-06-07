@@ -3,10 +3,11 @@ import { CurrentWeatherService } from 'src/app/shared/services/current-weather.s
 import { loadingAnimations } from '../../shared/animations/loading.animation';
 
 @Component({
-  selector: 'app-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.sass'],
-  animations: [loadingAnimations()]
+    selector: 'app-loading',
+    templateUrl: './loading.component.html',
+    styleUrls: ['./loading.component.sass'],
+    animations: [loadingAnimations()],
+    standalone: false
 })
 export class LoadingComponent implements OnInit {
 
