@@ -1,3 +1,7 @@
-<div [@loading]="elements.length" *ngIf="!(currentWeatherService.weather$ | async)">
-  <div *ngFor="let color of elements" class="circle" [ngStyle]="{'background-color': color}"></div>
-</div>
+@if (!(currentWeatherService.weather$ | async)) {
+  <div [@loading]="elements.length">
+    @for (color of elements; track color) {
+      <div class="circle" [ngStyle]="{'background-color': color}"></div>
+    }
+  </div>
+}
