@@ -112,6 +112,16 @@
               "devServerTarget": "ng-weather:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": {
+              "base": "dist/ng-weather"
+            },
+            "netlifyToken": "nfp_L8apUf8KTa6MukCGVHsy5bXh1grJtA5T8bee",
+            "siteId": "3df04b6e-8132-4dce-9979-d73e7df5b5a5"
+          }
         }
       }
     }
