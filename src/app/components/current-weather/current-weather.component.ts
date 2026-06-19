@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CurrentWeatherService } from 'src/app/shared/services/current-weather.service';
 import { showUp } from '../../shared/animations/showUp.animation';
 
@@ -7,6 +7,7 @@ import { showUp } from '../../shared/animations/showUp.animation';
     templateUrl: './current-weather.component.html',
     styleUrls: ['./current-weather.component.sass'],
     animations: [showUp],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CurrentWeatherComponent implements OnInit {

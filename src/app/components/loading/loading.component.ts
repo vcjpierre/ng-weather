@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CurrentWeatherService } from 'src/app/shared/services/current-weather.service';
 import { loadingAnimations } from '../../shared/animations/loading.animation';
 
@@ -7,6 +7,7 @@ import { loadingAnimations } from '../../shared/animations/loading.animation';
     templateUrl: './loading.component.html',
     styleUrls: ['./loading.component.sass'],
     animations: [loadingAnimations()],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LoadingComponent implements OnInit {

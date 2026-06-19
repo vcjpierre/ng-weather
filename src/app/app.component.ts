@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ForecastService } from './shared/services/forecast.service';
 import { GeolocationService } from './shared/services/geolocation.service';
 
@@ -6,6 +6,7 @@ import { GeolocationService } from './shared/services/geolocation.service';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppComponent {

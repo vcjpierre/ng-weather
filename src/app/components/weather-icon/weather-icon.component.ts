@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-weather-icon',
     templateUrl: './weather-icon.component.html',
     styleUrls: ['./weather-icon.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WeatherIconComponent implements OnInit {
