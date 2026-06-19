@@ -1,0 +1,23 @@
+<div class="city-search">
+  <input
+    class="search-input"
+    type="text"
+    placeholder="Search city&hellip;"
+    [(ngModel)]="query"
+    (input)="onInput()"
+    (keydown.enter)="onEnter()"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    aria-label="Search city"
+  >
+  @if (open) {
+    <ul class="search-results">
+      @for (city of results; track $index) {
+        <li class="search-result" (mousedown)="select(city)">
+          <span class="result-name">{{ city.name }}{{ city.state ? ', ' + city.state : '' }}</span>
+          <span class="result-country">{{ city.country }}</span>
+        </li>
+      }
+    </ul>
+  }
+</div>

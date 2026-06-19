@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-weather-icon',
@@ -7,42 +7,25 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class WeatherIconComponent implements OnInit {
+export class WeatherIconComponent {
 
-  icon: string = "weather";
-  _code: number;
+  icon = "weather";
 
-  @Input() set code(value: number) {
-    this._code = value;
-    this.icon = null;
+  @Input() set code(value: number | undefined) {
+    this.icon = '';
 
-    if (this._code >= 200 && this._code <= 250) {
-      this.icon = "day";
-    }
+    if (value === undefined) return;
 
-    if (this._code >= 300 && this._code <= 350) {
-      this.icon = "rainy-4";
-    }
-
-    if (this._code >= 500 && this._code <= 550) {
-      this.icon = "rainy-7";
-    }
-
-    if (this._code == 600) this.icon = "snowy-4";
-    if (this._code == 601) this.icon = "snowy-5";
-    if (this._code > 600 && this._code <= 650) this.icon = "snowy-6";
-
-    if (this._code == 800) this.icon = "day";
-
-    if (this._code == 801) this.icon = "cloudy-day-1";
-    if (this._code == 802) this.icon = "cloudy-day-2";
-    if (this._code == 803) this.icon = "cloudy-day-3";
-    if (this._code == 804) this.icon = "cloudy";
+    if (value >= 200 && value <= 250) { this.icon = "day"; }
+    if (value >= 300 && value <= 350) { this.icon = "rainy-4"; }
+    if (value >= 500 && value <= 550) { this.icon = "rainy-7"; }
+    if (value == 600) this.icon = "snowy-4";
+    if (value == 601) this.icon = "snowy-5";
+    if (value > 600 && value <= 650) this.icon = "snowy-6";
+    if (value == 800) this.icon = "day";
+    if (value == 801) this.icon = "cloudy-day-1";
+    if (value == 802) this.icon = "cloudy-day-2";
+    if (value == 803) this.icon = "cloudy-day-3";
+    if (value == 804) this.icon = "cloudy";
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

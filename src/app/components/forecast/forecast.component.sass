@@ -1,2 +1,20 @@
-app-weather-card 
-    margin: 1em
+@use '../../../colors' as c
+
+\:host
+  display: contents
+
+.forecast
+  padding: 0 1.5rem 3rem
+  max-width: 28rem
+  margin: 0 auto
+
+.forecast-heading
+  font-family: 'Barlow', sans-serif
+  font-weight: 600
+  font-size: 0.6875rem
+  text-transform: uppercase
+  letter-spacing: 0.12em
+  color: c.$text-secondary
+  margin: 0 0 0.5rem
+  padding: 1rem 0 0.5rem
+  border-top: 2px solid c.$text

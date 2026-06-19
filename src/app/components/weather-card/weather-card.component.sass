@@ -1,65 +1,60 @@
-$dark: #252a32
-$accent: #ff2e63
-$light: #eaeaea
-$main: #08d9d6
+@use '../../../colors' as c
 
 \:host
-  display: inline-block
+  display: contents
 
-*, *:before, *:after
-  box-sizing: border-box
-  
-.weather-wrapper
-  margin-top: 20px
+.forecast-row
+  display: grid
+  grid-template-columns: 3rem 2rem 2.5rem 1fr 2.5rem
+  align-items: center
+  gap: 0.75rem
+  padding: 0.625rem 0
+  border-bottom: 1px solid rgba(c.$text-secondary, 0.15)
+
+  &:last-child
+    border-bottom: 0
+
+.day-label
+  font-family: 'Barlow', sans-serif
+  font-weight: 600
+  font-size: 0.8125rem
+  color: c.$text-secondary
+  text-transform: uppercase
+  letter-spacing: 0.04em
+
+.fc-icon
   display: flex
-  flex-direction: row
-  flex-wrap: wrap
+  align-items: center
   justify-content: center
 
-.card
-  margin: 20px 5px
-  border-radius: 20px
+  app-weather-icon
+    width: 1.5rem
+    height: 1.5rem
+
+.fc-temp
+  font-family: 'Barlow', sans-serif
+  font-weight: 600
+  font-size: 0.9375rem
+
+.fc-high
+  color: c.$text
+  text-align: right
+
+.fc-low
+  color: c.$text-secondary
+  text-align: left
+
+.range-track
+  height: 4px
+  border-radius: 2px
+  background: rgba(c.$text-secondary, 0.12)
   position: relative
   overflow: hidden
-  width: 270px
-  height: 270px
-  background-color: white
-  box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1)
-  grid-template-columns: repeat(4, 1fr)
-  grid-template-rows: repeat(3, auto)
-  grid-template-areas:"icon icon temperature temperature" "lowtemp lowtemp hightemp hightemp" "description description description description"
 
-.card, .temp
-  grid-area: temperature
-  .big
-    font-size: 2em
-    color: $main
-    font-weight: bold
-  p
-    margin: 0
-
-.card, .icon
-  grid-area: icon
-
-.card, .description
-  grid-area: description
-  h2
-    color: $accent
-    text-transform: uppercase
-    letter-spacing: 0.3em
-
-.low-temp 
-  grid-area: lowtemp
-
-
-.high-temp 
-  grid-area: hightemp
-
-.low-temp, .high-temp 
-  color: $accent
-  span 
-    color: $dark
-    opacity: 0.56
-    font-size: 0.6em
-    
-
+.range-fill
+  position: absolute
+  top: 0
+  bottom: 0
+  border-radius: 2px
+  background: linear-gradient(90deg, c.$accent-blue, c.$accent-amber)
+  min-width: 2px

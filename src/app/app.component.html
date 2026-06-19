@@ -1,7 +1,9 @@
-<div>
-  <app-current-weather></app-current-weather>
-  <app-loading></app-loading>
-  <app-forecast></app-forecast>
+<div class="app-shell">
+  <header class="app-header">
+    <app-city-selector></app-city-selector>
+  </header>
   <app-geolocation-button></app-geolocation-button>
-  <!-- {{geolocationService.coords$ | async | json}} -->
+  <app-loading></app-loading>
+  <app-current-weather></app-current-weather>
+  <app-forecast></app-forecast>
 </div>

@@ -1,0 +1,62 @@
+@use '../../../colors' as c
+
+\:host
+  display: block
+
+.city-search
+  position: relative
+  max-width: 22rem
+  margin: 0 auto
+
+.search-input
+  width: 100%
+  padding: 0.625rem 1rem
+  border: 1px solid rgba(c.$text-secondary, 0.25)
+  border-radius: 0
+  background: transparent
+  font-family: 'Inter', sans-serif
+  font-size: 0.875rem
+  color: c.$text
+  outline: none
+  transition: border-color 0.2s
+
+  &::placeholder
+    color: rgba(c.$text-secondary, 0.5)
+
+  &:focus
+    border-color: c.$text
+
+.search-results
+  position: absolute
+  top: 100%
+  left: 0
+  right: 0
+  margin: 0
+  padding: 0
+  list-style: none
+  background: white
+  border: 1px solid rgba(c.$text-secondary, 0.15)
+  border-top: 0
+  z-index: 10
+
+.search-result
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0.625rem 1rem
+  cursor: pointer
+  font-family: 'Inter', sans-serif
+  font-size: 0.875rem
+  transition: background 0.15s
+
+  &:hover
+    background: rgba(c.$text-secondary, 0.06)
+
+.result-name
+  color: c.$text
+
+.result-country
+  color: c.$text-secondary
+  font-size: 0.75rem
+  text-transform: uppercase
+  letter-spacing: 0.04em

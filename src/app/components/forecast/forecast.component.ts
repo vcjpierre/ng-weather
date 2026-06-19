@@ -1,20 +1,15 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { showUpStaggered } from '../../shared/animations/showUp.animation';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ForecastService } from 'src/app/shared/services/forecast.service';
 
 @Component({
     selector: 'app-forecast',
     templateUrl: './forecast.component.html',
     styleUrls: ['./forecast.component.sass'],
-    animations: [showUpStaggered],
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class ForecastComponent implements OnInit {
+export class ForecastComponent {
+  error$ = this.forecastService.error$;
 
   constructor(public forecastService: ForecastService) { }
-
-  ngOnInit(): void {
-  }
-
 }

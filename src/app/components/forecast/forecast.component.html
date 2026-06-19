@@ -1,5 +1,10 @@
-<div [@showUpCollection]="$safeNavigationMigration((forecastService.weather$ | async)?.length)">
-  @for (weather of forecastService.weather$ | async; track weather) {
-    <app-weather-card [weather]="weather"></app-weather-card>
+@if (forecastService.weather$ | async; as days) {
+  @if (days.length) {
+    <div class="forecast">
+      <p class="forecast-heading">5-day outlook</p>
+      @for (weather of days; track $index) {
+        <app-weather-card [weather]="weather" [index]="$index"></app-weather-card>
+      }
+    </div>
   }
-</div>
+}

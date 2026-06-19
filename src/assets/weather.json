@@ -15,11 +15,11 @@
     "icon": "04n"
   }],
   "main": {
-    "temp": 289.5,
+    "temp": 16.3,
     "humidity": 89,
     "pressure": 1013,
-    "temp_min": 287.04,
-    "temp_max": 292.04
+    "temp_min": 13.9,
+    "temp_max": 18.9
   },
   "wind": {
     "speed": 7.31,

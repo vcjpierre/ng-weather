@@ -1,0 +1,73 @@
+@use '../../../colors' as c
+
+\:host
+  display: block
+
+.hero
+  position: relative
+  padding: 3rem 1.5rem 1.5rem
+  text-align: center
+  overflow: hidden
+  min-height: 50vh
+  display: flex
+  align-items: center
+  justify-content: center
+
+.hero-bg
+  position: absolute
+  inset: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  opacity: 0.08
+  pointer-events: none
+
+  app-weather-icon
+    width: clamp(200px, 50vw, 500px)
+
+.hero-inner
+  position: relative
+  z-index: 1
+
+.city
+  font-family: 'Barlow', sans-serif
+  font-weight: 500
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem)
+  text-transform: uppercase
+  letter-spacing: 0.15em
+  color: c.$text-secondary
+  margin: 0 0 0.25rem
+
+.temp
+  font-family: 'Barlow', sans-serif
+  font-weight: 700
+  font-size: clamp(4rem, 20vw, 10rem)
+  line-height: 1
+  margin: 0
+  letter-spacing: -0.03em
+  transition: color 0.6s ease
+
+.condition
+  font-family: 'Inter', sans-serif
+  font-weight: 400
+  font-size: clamp(0.9375rem, 2vw, 1.125rem)
+  color: c.$text-secondary
+  margin: 0.75rem 0 0
+  text-transform: capitalize
+
+.error-state
+  text-align: center
+  padding: 6rem 1.5rem
+
+.error-title
+  font-family: 'Barlow', sans-serif
+  font-weight: 600
+  font-size: 1.125rem
+  color: c.$accent-red
+  margin: 0 0 0.5rem
+
+.error-desc
+  font-family: 'Inter', sans-serif
+  font-size: 0.9375rem
+  color: c.$text-secondary
+  margin: 0

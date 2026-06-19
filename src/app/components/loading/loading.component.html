@@ -1,7 +1,6 @@
-@if (!(currentWeatherService.weather$ | async)) {
-  <div [@loading]="elements.length">
-    @for (color of elements; track color) {
-      <div class="circle" [ngStyle]="{'background-color': color}"></div>
-    }
+@if (!(currentWeatherService.weather$ | async) && !(currentWeatherService.error$ | async)) {
+  <div class="loading">
+    <div class="spinner"></div>
+    <p class="loading-text">Getting your forecast&hellip;</p>
   </div>
 }

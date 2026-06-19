@@ -1,7 +1,7 @@
-import { Injectable, isDevMode} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Subject, Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { Weather } from '../../core/interfaces/weather';
 import { Coords } from '../../core/interfaces/coords';
 import { GeolocationService } from './geolocation.service';
@@ -15,10 +15,11 @@ export class ForecastService {
 
   public weatherSubject: Subject<any> = new Subject<any>();
   public weather$: Observable<any>;
+  public error$: Subject<boolean> = new Subject<boolean>();
 
-  endpoint: string = 'https://api.openweathermap.org/data/2.5/forecast';
+  endpoint = 'https://api.openweathermap.org/data/2.5/forecast';
 
-  constructor(private http: HttpClient, private geolocationService: GeolocationService) { 
+  constructor(private http: HttpClient, private geolocationService: GeolocationService) {
 
     this.weather$ = this.weatherSubject.asObservable().pipe(map(this.structureData));
 
@@ -28,32 +29,35 @@ export class ForecastService {
   }
 
   structureData(data: any) {
-    let minMaxPerDay = {};
+    if (!data || !data.list) return [];
 
-    data.list.forEach(weatherObject => {
-      let date = new Date(weatherObject.dt * 1000);
-      let hours = date.getHours();
-      let month = date.getMonth();
-      let day = date.getDate();
-      let key = `${month}-${day}`;
+    const minMaxPerDay: { [key: string]: Weather } = {};
+
+    data.list.forEach((weatherObject: any) => {
+      const date = new Date(weatherObject.dt * 1000);
+      const hours = date.getHours();
+      const month = date.getMonth();
+      const day = date.getDate();
+      const key = `${month}-${day}`;
 
       let tempPerDay: Weather = minMaxPerDay[key] || {
-        minMaxTemp: {}
+        minMaxTemp: {} as Weather['minMaxTemp']
       };
 
       if (!tempPerDay.cod || hours == 16) {
-        let source = weatherObject.weather[0];
+        const source = weatherObject.weather[0];
         tempPerDay = { ...tempPerDay, ...source };
         tempPerDay.cod = source.id;
-        tempPerDay.name = data.city.name
+        tempPerDay.name = data.city.name;
       }
 
-      if (!tempPerDay.minMaxTemp.min || (weatherObject.main.temp_min < tempPerDay.minMaxTemp.min)) {
-        tempPerDay.minMaxTemp.min = weatherObject.main.temp_min;
+      const minMax = tempPerDay.minMaxTemp!;
+      if (!minMax.min || (weatherObject.main.temp_min < minMax.min)) {
+        minMax.min = weatherObject.main.temp_min;
       }
 
-      if (!tempPerDay.minMaxTemp.max || (weatherObject.main.temp_max > tempPerDay.minMaxTemp.max)) {
-        tempPerDay.minMaxTemp.max = weatherObject.main.temp_max;
+      if (!minMax.max || (weatherObject.main.temp_max > minMax.max)) {
+        minMax.max = weatherObject.main.temp_max;
       }
 
       minMaxPerDay[key] = tempPerDay;
@@ -63,13 +67,15 @@ export class ForecastService {
   }
 
   get(coords: Coords) {
-    let args: string = `?lat=${coords.lat}&lon=${coords.lon}&APPID=${environment.key}&units=metric`;
-    let url = this.endpoint + args;
+    this.error$.next(false);
+    const args = `?lat=${coords.lat}&lon=${coords.lon}&APPID=${environment.key}&units=metric`;
+    const url = this.endpoint + args;
 
-    // if(isDevMode()) {
-    //   url = 'assets/forecast.json';
-    // }
-
-    this.http.get(url).subscribe(this.weatherSubject);
+    this.http.get(url).pipe(
+      catchError(() => {
+        this.error$.next(true);
+        return of(null);
+      })
+    ).subscribe((data) => this.weatherSubject.next(data));
   }
 }

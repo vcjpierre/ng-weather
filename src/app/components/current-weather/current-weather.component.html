@@ -1,1 +1,21 @@
-<app-weather-card [@showUpElement] [weather]="weatherService.weather$ | async"></app-weather-card>
+@if (weatherService.weather$ | async; as weather) {
+  @if (weather) {
+    <div class="hero">
+      <div class="hero-bg">
+        <app-weather-icon [code]="weather.id"></app-weather-icon>
+      </div>
+      <div class="hero-inner">
+        <p class="city">{{ weather.name }}</p>
+        <p class="temp" [style.color]="tempColor(weather.temp)">{{ weather.temp | number:'1.0-0' }}°</p>
+        <p class="condition">{{ weather.description }}</p>
+      </div>
+    </div>
+  }
+}
+
+@if (error$ | async) {
+  <div class="error-state">
+    <p class="error-title">Could not load weather data</p>
+    <p class="error-desc">Check your connection and try again.</p>
+  </div>
+}
